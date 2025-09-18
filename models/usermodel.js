@@ -1,12 +1,16 @@
-import mongoose from "mongoose"
+import {Schema,model} from "mongoose"
 
 const userSchema = new Schema({
     firstname:String,
     lastname:String,
     email:String,
-    mobile:String,
+    mobile:Number,
     password:String,
     tokenotp:String,
+    role:{
+        type:String,
+        default:'user'
+    },
 
 },{timestamps:true,versionKey:false});
 

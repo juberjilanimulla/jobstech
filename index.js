@@ -4,6 +4,8 @@ import dbConnect from "./db.js";
 import config from "./config.js";
 import morgan from "morgan";
 import bodyParser from "body-parser";
+import { Admin } from "./helper/helperFunction.js";
+import authRouter from "./routes/auth/authRouter.js";
 
 
 const app = express();
@@ -51,9 +53,14 @@ app.use((req, res) => {
   });
 });
 
+//routes
+app.use("/api/auth",authRouter)
+
+
 //Database connection
 dbConnect()
   .then(() => {
+    Admin()
     app.listen(port, () => {
       console.log(`Server listening on port ${port}`);
     });
